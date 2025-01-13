@@ -1,0 +1,162 @@
+%! Author = Carl
+%! Date = 2024/4/2
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习十二}
+\begin{enumerate}
+    \item 用积分变换法求解下列定解问题:
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         u_{t}=a^2u_{xx},\quad -\infty <x < +\infty, t>0\\u(x,0)=\cos x.
+         \end{array}
+        \right.
+     \end{equation*}
+
+    解：等式两边同时对$x$求$Fourier$变换，则有
+    \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         \dfrac{dU}{dt}=-a^2\lambda^{2}U\\u(\lambda,t)|_{t=0}=\mathscr{F}[\cos x].
+         \end{array}
+        \right.
+     \end{equation*}
+    求解该一阶ODE，得到:$U^{'}+a^2\lambda^{2}U=0$.解得:$U(\lambda,t)=C(\lambda)e^{-a^2 \lambda^2 t}$.\\由边界条件可得:$U(\lambda,t)=\mathscr{F}[\cos x]e^{-a^2 \lambda^2 t}$,做傅里叶逆变换，得:
+    \\$u(x,t)=\mathscr{F}^{-1}[U(\lambda,t)]=\mathscr{F}^{-1}[e^{-a^2 \lambda^2 t}]\ast \cos x=\cos x \ast\dfrac{1}{2a\sqrt {\pi t}}e^{-\frac{x^2}{4a^2 t}}$.\\所以$u(x,t)=\displaystyle\int_{-\infty}^{+\infty}\cos \xi \cdot \dfrac{1}{2a\sqrt {\pi t}}e^{-\frac{(x-\xi)^2}{4a^2 t}}d\xi$.
+
+    \item 设有一半无限长固体($x>0$)，其初始温度是零度，一个常数温度$u_0>0$外加和保持在其表面$x=0$处， 求固体在任何一点$x$和任一时刻$t$的温度.设在点$x$处和时刻$t$的温度为$u(x,t)$，则问题归结为求解以下热传导方程的定解问题：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{t}=a^2u_{xx},\quad x > 0, t>0\\u(0,t)=u_0,\quad u(x,0)=0,\\|u(x,t)|<+\infty.
+     \end{array}
+    \right.
+    \end{equation*}
+        解：PDE两端同时对$t$做$Laplace$变换，则得到:
+    \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         \dfrac{dU^2}{dx^2}-\dfrac{s}{a^2}U=0\\U(0,s) = u_0,\quad U(x,t)=0,\\|u(x,s)|<+\infty.
+         \end{array}
+        \right.
+     \end{equation*}
+    那么方程的通解为:$U(x,s)=A(s)e^{\frac{\sqrt {s}}{a}x}+B(s)e^{-\frac{\sqrt {s}}{a}x}$.由有界性和边界条件得:$A(s)=0,B(s)=u_0$.\\则$u(x,s)=u_0 e^{-\frac{\sqrt {s}}{a}x} $,查表得:$\mathscr{L}^{-1}[\dfrac{1}{s}e^{-a\sqrt {s}}]=\dfrac{2}{\sqrt {\pi}}\displaystyle\int_{\frac{a}{2\sqrt {t}}}^{+\infty}e^{-y^2}dy$.\\
+    则\begin{align*}
+    u(x,t) &= \mathscr{L}^{-1}[u_0 s\cdot \dfrac{1}{s}e^{-\frac{x}{a}\sqrt {s}}]\\
+    &= u_0 \dfrac{d}{dt}\big[\dfrac{2}{\sqrt {\pi}}\displaystyle\int_{\frac{x}{2a\sqrt {t}}}^{+\infty}e^{-y^2}dy\big]\\[8pt]
+    &= \dfrac{u_0 x}{2a\sqrt {\pi}t^{\frac{3}{2}}}e^{-\frac{x^2}{4a^2 t}}.
+    \end{align*}
+
+
+    \item 设 A,$\omega$均为常数, 用积分变换法求解下列问题：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2u_{xx},\quad x>0,  t>0\\u(x,0)=u_t(x,0)=0,\\u(0,t)=A\sin\omega t,|u(x,t)|<M(x\rightarrow \infty)
+     \end{array}
+    \right.
+    \end{equation*}
+        解：将各式两端关于$t$进行$Laplace$变换，则得到:
+    \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         \dfrac{d^2 U}{dx^2}-\dfrac{s^2}{a^2}U=0,\\U(x,0)=U_t (x,0)=0,\\U(0,s)=A\mathscr{L}[\sin wt].
+         \end{array}
+        \right.
+     \end{equation*}
+    则通解为$u(x,s)=c_1 e^{\frac{s}{a}x}+c_2 e^{-\frac{s}{a}x}$.由有界性和边界条件可知:\\
+    $u(x,s)=A\mathscr{L}[\sin wt] e^{-\frac{s}{a}x}$.  查表可得:$\mathscr{L}^{-1}[F(s)e^{-sa}]=f(s-a),(t>a)$.所以:
+    \\ $u(x,t)=\mathscr{L}^{-1}[A\mathscr{L}[\sin wt]e^{-\frac{s}{a}x}]=A\sin(t-\dfrac{s}{a})u(t-\dfrac{s}{a})$.
+    \end{enumerate}
+
+    \setlength{\topmargin}{-18mm}
+\section*{练习十三}
+    \begin{enumerate}
+    \item 用积分变换法求解下列定解问题：
+       \[
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2u_{xx}, \quad 0<x<1,\quad t>0 \\
+     u_x(0,t)=0,\quad u_x(1,t)=0,\\
+     u(x,0)=\cos 3\pi x, u_t(x,0)=0.
+     \end{array}
+    \right. \]
+        解：将各式两端关于$t$进行$Laplace$变换，则得到:
+    \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+             \dfrac{d^2 U}{dx^2}-\dfrac{s^2}{a^2}U=-\dfrac{s}{a^2}\cos 3\pi x,\\u_x(0,s)=u_x(1,s)=0,\\u(x,0)=\cos 3\pi x,u_t(x,0)=0.
+
+         \end{array}
+        \right.
+     \end{equation*}
+    易得方程的解为:$u(x,s)=Ae^{\frac{s}{a}x}+Be^{-\frac{s}{a}x}+\dfrac{s\cos 3\pi x}{s^2+9a^2 \pi^2}$.
+    \\又由边界条件可知,$u(x,s)=\dfrac{s\cos 3\pi x}{s^2+9a^2 \pi^2}$,所以$u(x,t)=\cos 3\pi x \cdot \cos 3a\pi t$.
+
+    \item  用积分变换法求解下列定解问题：
+    \[
+    \left\{
+     \begin{array}{lr}
+     u_{t}=t^2u_{xx},\quad -\infty<x<+\infty,\quad t>0 \\
+     u(x,0)=\varphi(x).
+     \end{array}
+    \right. \]
+
+    解：等式两端对$x$求$Fourier$变换，
+    \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+             \dfrac{dU}{dt}+\lambda^2 t^{2}U=0,\\u(\lambda,0)=\Phi(\lambda).
+         \end{array}
+        \right.
+     \end{equation*}
+    解得$U(\lambda,t)=Ce^{-\frac{1}{3}\lambda^2 t^3}$,由初值条件可得$U(\lambda,t)=\Phi(\lambda)e^{-\frac{1}{3}\lambda^2 t^3}$.
+    所以$u(x,t)=\varphi(x)\ast \sqrt {\dfrac{3}{4\pi t^3}}e^{\frac{3}{4t^3}x^2}$
+
+
+    \item  用积分变换法求解定解问题：
+    \[
+    \left\{
+     \begin{array}{lr}
+     u_{t}=a^2u_{xx}+ku,& -\infty<x<+\infty,\quad t>0 \\
+     u(x,0)=\varphi(x).
+     \end{array}
+    \right. \]
+
+    解：两边同时关于$x$做$Fourier$变换，得到:
+        \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+             \dfrac{dU}{dt}+(a^2 \lambda^2-k)U=0,\\u(\lambda,0)=\Phi(\lambda).
+         \end{array}
+        \right.
+     \end{equation*}
+    与上题相同,$u(x,t)=[\varphi(x)\ast \sqrt {\dfrac{1}{4\pi a^2t}}e^{-\frac{x^2}{4a^2 t}}]\cdot e^{kt}$.
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,99 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习五}
+\begin{enumerate}
+    \item 求下列定解问题的解：
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         u_{xx}+u_{yy}=0, \quad 0<x<1,0<y<1,  \\
+         u_x(0,y)=u_x(1,y)=0, \\
+         u(x,0)=1+\cos 3\pi x,\quad u(x,1)=3\cos2\pi x.
+         \end{array}
+        \right.
+     \end{equation*}
+
+    解：设$u(x,y)=X(x)Y(y)$,则得到$YX^{''}+XY^{''}=0$,即得到$\dfrac{X^{''}}{X}=-\dfrac{Y^{''}}{Y}=-\lambda$.\\即有$Y^{''}-\lambda Y=0$和$X^{''}+\lambda X=0$.其中$X^{'}(0)=X^{'}(1)=0.$\\当$\lambda < 0 $时，方程没有非平凡解.当$\lambda = 0 $时，$X(x)=A+Bx$,\\又$X^{'}(0)=X^{'}(1)=0$,$X(x)\equiv A.$,$Y(y)=D+Ey$\\当$\lambda > 0 $时,$X$的通解为$X(x)=B\cos\sqrt {\lambda}x+C\sin\sqrt {\lambda}x$,$X^{'}(x)=-B\sqrt {\lambda}\sin\sqrt {\lambda}x+C\sqrt {\lambda}\cos\sqrt {\lambda}x$.\\由边界条件得，$\lambda = (n\pi)^2,n=1,2,3\dots$,$X(x)=B\cos n\pi x$.\\由通解可得，$Y(y)=Fe^{n\pi y}+Ge^{-n\pi y}$.\\那么$u(x,y)=A(D+Ey)+\sum\limits_{n=1}^{\infty}B_n(F_ne^{n\pi y}+G_ne^{-n\pi y})\cos n\pi x$,令$a_n=B_{n}F_n,b_n=B_{n}G_n$.\\$u(x,0)=AD+\sum\limits_{n=1}^{\infty}(a_n+b_n)\cos n\pi x=1+\cos 3\pi x$.易得$AD=1$，\\以及
+        $a_n+b_n=2\int_0^1\cos 3\pi x\cdot \cos n\pi xdx=\begin{cases} 1,&n=3,\\0,&n\neq 3.\end{cases}$\\$u(x,1)=A(D+E)+\sum\limits_{n=1}^{\infty}(a_ne^{n\pi}+b_ne^{-n\pi})\cos n\pi x=3\cos 2\pi x$.\\可得$AD+AE=0$,$a_ne^{n\pi}+b_ne^{-n\pi}=2\int_0^{13}\cos 2\pi x\cdot \cos n\pi xdx=\begin{cases} 3,&n=2,\\0,&n\neq 2.\end{cases}$\\解方程,得：$u(x,y)=1-y+\dfrac{3}{e^{2\pi }-e^{-2\pi }}(e^{2\pi y}-e^{-2\pi y})\cos 2\pi x+\dfrac{1}{e^{3\pi }-e^{-3\pi }}(e^{3\pi}e^{3\pi y}+e^{-3\pi}e^{-3\pi y})\cos 3\pi x$.
+
+
+    \item 设有一内半径为$r_1$，外半径为$r_2$ 的圆环形导热板, 上下两侧绝热. 如果内圆温度保持零度，而外圆温度保持$u_0 (u_0 > 0)$ 度，试求稳恒状态下该导热版的温度分布规律$u_r(r,\theta)$. 问题归结为在稳恒状态下，求解拉普拉斯方程$\Delta u=u_{xx}+u_{yy}=0$ 边值问题，即在极坐标系下求解定解问题：
+    \[
+    \left\{
+         \begin{array}{lr}
+         \dfrac{1}{r}\dfrac{\partial}{\partial r}\big(r\dfrac{\partial u}{\partial r}\big)+\dfrac{1}{r^2}\dfrac{\partial^2 u}{\partial \theta^2}=0, & r_1<r<r_2,0<\theta<2\pi,  \\[8pt]
+         u(r_1,\theta)=0,\quad u(r_2,\theta)=u_0,& 0<\theta<2\pi, \\
+         u(r,\theta)=u(r,\theta+2\pi).&(Natural Boundary Condition)
+         \end{array}
+        \right. \]
+
+    解：设$u(r,\theta)=R(r)\varPhi(\theta)$,则有$R^{''}+\dfrac{1}{r}R^{'}\varPhi+\dfrac{1}{r^2}R\varPhi^{''}=0$,得到$\dfrac{r^{2}R^{''}+rR^{'}}{R}=-\dfrac{\varPhi^{''}}{\varPhi}=\lambda$.\\对于$\varPhi^{''}+\lambda\varPhi=0$,$\varPhi(\theta)=\varPhi(\theta+2\pi)$,当$\lambda <0$时，问题没有非平凡解.\\当$\lambda =0$时,$\varPhi(\theta)=A_0\theta+B_0$,又由周期条件可知,$A_0=0$,$\varPhi(\theta)_0=B_0$.\\对于$R(r)$而言,$r^{2}R^{''}+rR^{'}=0$,解得$R_0(r)=C_0\ln r+D_0$.\\当$\lambda>0$时,通解为$\varPhi(\theta)=E\cos\sqrt {\lambda}\theta+F\sin\sqrt {\lambda}\theta$.由边界条件可知,$\lambda=n^2,n=1,2\dots$.\\代入可得,$r^{2}R^{''}+rR^{'}-\lambda R=0$,解欧拉方程，解得:$R_n(r)=C_{n}r^n+D_{n}r^{-n}$.\\得到:$u(r,\theta)=B_0(C_0\ln r+D_0)+\sum\limits^{\infty}_{n=1}(E_n\cos n\theta+F_n\sin n\theta)(C_{n}r^n)+D_{n}r^{-n}$.\\
+        又$u(r_1,\theta)=B_{0}C_0\ln r_1+B_{0}D_0+\sum\limits^{\infty}_{n=1}(E_n\cos n\theta+F_n\sin n\theta)(C_{n}r_1^n)+D_{n}r_1^{-n}$得到\[\begin{cases}B_{0}C_0\ln r_1+B_{0}D_0=0,\\\sum\limits^{\infty}_{n=1}(E_n\cos n\theta+F_n\sin n\theta)(C_{n}r_1^n)+D_{n}r_1^{-n}=0.\end{cases}\]\\和$u(r_2,\theta)=B_{0}C_0\ln r_2+B_{0}D_0=u_0$\\解得$B_{0}C_0=\dfrac{u_o}{\ln \frac{r_2}{r_1}}$和$B_{0}D_0=\dfrac{\ln r_{1}u_0}{\ln \frac{r_1}{r_2}}$.所以$u(r,\theta)=\dfrac{u_0\ln \frac{r}{r_1}}{\ln \frac{r_2}{r_1}}$.
+
+
+    \item 求下列定解问题的解:
+        \[
+    \left\{
+         \begin{array}{lr}
+         \dfrac{1}{r}\dfrac{\partial}{\partial r}\big(r\dfrac{\partial u}{\partial r}\big)+\dfrac{1}{r^2}\dfrac{\partial^2 u}{\partial \theta^2}=0, & 0<r<1,0<\theta<\dfrac{\pi}{2},  \\[8pt]
+         u(r,0)=0,\quad u(r,\dfrac{\pi}{2})=0,& 0<r<1, \\
+         u(1,\theta)=\theta(\dfrac{\pi}{2}-\theta).&0<\theta<\dfrac{\pi}{2}
+         \end{array}
+        \right. \]
+    解：设$u(r,\theta)=R(r)\varPhi(\theta)$,则有$R^{''}+\dfrac{1}{r}R^{'}\varPhi+\dfrac{1}{r^2}R\varPhi^{''}=0$,得到$\dfrac{r^{2}R^{''}+rR^{'}}{R}=-\dfrac{\varPhi^{''}}{\varPhi}=\lambda$.\\对于$\varPhi^{''}+\lambda\varPhi=0$,$\varPhi(\theta)=\varPhi(\frac{\pi}{2})$,当$\lambda <0$时，问题没有非平凡解.\\当$\lambda =0$时,$\varPhi(\theta)=A_0\theta+B_0$,又$\varPhi(0)=B=0,\varPhi\big(\frac{\pi}{2}\big)=\dfrac{\pi}{2}A=0$,所以$x\equiv 0$.\\当$\lambda>0$时,通解为$\varPhi(\theta)=E\cos\sqrt {\lambda}\theta+F\sin\sqrt {\lambda}\theta$,\\又$\varPhi(0)=C\cos\sqrt {\lambda}\times 0=C=0$,$\varPhi(\frac{\pi}{2})=D\sin\sqrt {\lambda}\cdot \dfrac{\pi}{2}=0$.即$\dfrac{\pi}{2}\sqrt {\lambda}=n\pi$.\\所以$\lambda=(2n)^2,n=1,2,\dots$,那么$\varPhi_n(\theta)=D_n\sin 2n\theta,n=1,2,\dots$.\\将$\lambda=(2n)^2\dots$代入，解欧拉方程，得到:$R_n(r)=E_{n}r^{2n}+F_{n}r^{-2n}$.\\
+        所以有$u(r,\theta)=\sum\limits^{\infty}_{n=1}(a_{n}r^{2n}+b_{n}r^{-2n})\sin 2n\theta$,其中$a_n=E_{n}D_n,b_n=F_{n}D_n$.由$|R(0)|<+\infty$,则$F_n=0$.\\所以$a_n+b_n=\dfrac{4}{\pi}\int^{\frac{\pi}{2}}_{0}\theta(\frac{\pi}{2}-\theta)\sin 2n\theta d\theta=\dfrac{4}{\pi}\times \dfrac{2[1-(-1)^n]}{8n^3}$.\\所以$u(r,\theta)=\sum\limits_{n=1}^{\infty}\dfrac{1-(-1)^n}{\pi n^3}r^{2n}\sin 2n\theta  $.
+
+\end{enumerate}
+\setlength{\topmargin}{-18mm}
+\section*{练习六}
+    \begin{enumerate}
+        \item 求解如下定解问题：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_t=u_{xx}+\cos\pi x, &0<x<1,t>0 \\
+         u_x(0,t)=u_x(1,t)=0, \\
+         u(x,0)=0
+         \end{array}
+        \right. \]
+            解：方程所对应的齐次方程$u_t=u_{xx}$满足该边界条件的固有函数系为$\{\cos n\pi x\}$.\\设$U(x,t)=\sum\limits_{n=1}^{\infty}u_n(t)\cos n\pi x$.代入方程中，得：\\$\sum\limits_{n=1}^{\infty}\big[u^{'}_n(t)+n^2\pi^{2}u_{n}(t)\cos n\pi x\big]\cos n\pi x=\cos \pi x$.\quad 当$n\neq1$时,问题没有非平凡解.\\当$n=1$时,由$Laplace$变换，$sU(s)-u(0)+\pi^{2}U(s)=\dfrac{1}{s}$,得到$U(s)=\dfrac{1}{\pi^2}\big(\dfrac{1}{s}-\dfrac{1}{\pi^2+s}\big)$,\\由$Laplace$逆变换,得到$u(t)=\dfrac{1}{\pi^2}(1-e^{-\pi^{2}t})$.\\所以$u(x,t)=\dfrac{1}{\pi^2}(1-e^{-\pi^{2}t})\cos \pi x$.
+
+        \item  求解如下定解问题：
+        \[
+        \left\{
+         \begin{array}{lr}
+         u_{tt}=a^2u_{xx}+t\sin\dfrac{\pi x}{l}, &0\leq x\leq l,t\geq 0 \\[6pt]
+         u(0,t)=u(l,t)=0,&t\geq 0, \\
+         u(x,0)=0,\quad u_t(x,0)=0,&0\leq x\leq l
+         \end{array}
+        \right. \]
+
+        解：方程所对应的齐次方程$u_{tt}=a^{2}u_{xx}$满足该边界条件的固有函数系为$\{\sin \dfrac{n\pi x}{l} x\}$.\\设$U(x,t)=\sum\limits_{n=1}^{\infty}u_n(t)\sin \dfrac{n\pi x}{l} x$.代入方程中，得：\\$u_{tt}=\sum\limits_{n=1}^{\infty}u_{n}^{''}(t)\sin \dfrac{n\pi x}{l} x$和$u_{xx}=\sum\limits_{n=1}^{\infty}u_{n}(t)(-1)\big(\dfrac{n\pi}{l}\big)^2\sin \dfrac{n\pi x}{l} x$.\\即$\sum\limits_{n=1}^{\infty}\big[u_{n}^{''}(t)+\big(\dfrac{n\pi \alpha}{l}\big)^2\big]\sin\dfrac{n\pi x}{l}=t\sin\dfrac{\pi x}{l}$.\\当$n=1$时,$u_{1}^{''}(t)+\big(\dfrac{\pi \alpha}{l}\big)^{2}u_n(t)=t$,且$u_{1}^{''}(0)=u_{1}(0)=0$.\\由$Laplace$变换,得:$s^{2}U_{1}(s)-su_{1}(0)-s^{'}u_{1}(0)+\big(\dfrac{\pi\alpha}{l}\big)^{2}U_{1}(s)=\dfrac{1}{s^2}$\\即$U_{1}(s)=\big(\dfrac{l}{\pi\alpha}\big)^{2}\bigg(\dfrac{1}{s^2}-\dfrac{1}{\pi\alpha}\dfrac{\frac{\pi\alpha}{l}}{s^2+(\frac{\pi\alpha}{l})^2}\bigg)$.\\由$Laplace$逆变换,得:$u_{1}(t)=\big(\dfrac{l}{\pi\alpha}\big)\big(t-\dfrac{l}{\pi\alpha}\sin\dfrac{\pi\alpha t}{l}\big)$.即:$u(x,t)=\big(\dfrac{l}{\pi\alpha}\big)\big(t-\dfrac{l}{\pi\alpha}\sin\dfrac{\pi\alpha t}{l}\big)\sin\dfrac{\pi x}{l}$.
+
+
+    \end{enumerate}
+\end{document}

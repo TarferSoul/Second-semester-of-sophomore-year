@@ -1,0 +1,128 @@
+%! Author = Carl
+%! Date = 2024/4/2
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习十四}
+\begin{enumerate}
+    \item 设$K_R$表示以原点为中心以$R$为半径的球体,$\Gamma_R$表示以原点为中心以$R$为半径的球面.若$u$满足下面的定解问题:
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         \Delta u = 0, (x,y,z)\in K_R, \\
+         u |_{\Gamma_R} = 1 + \sin xy^2 z^3.
+         \end{array}
+        \right.
+     \end{equation*}
+    利用极值原理证明：在$K_R$内,$u>0$.\\
+    解:由$\Delta u =0$可知,$u$是区域$K_R$下的调和函数,那么由极值定理可知,u的最大值或最小值都只能在边界$\Gamma_R$上取得.显然$u$不是常数.\\
+    若边界上取得最小值,显然有边界上的最小值为0，即在区域$K_R$内有$u>0$.
+
+
+    \item 设$K_R$表示以原点为中心以$R$为半径的球体,$\Gamma_R$表示以原点为中心以$R$为半径的球面.若$0<r<R$ , 且$u$满足下面的定解问题:
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     \Delta u = 0, (x,y,z)\in K_R  \backslash \overline{K_r}, \\
+     u|_{\Gamma_r}=1,\quad u|_{\Gamma_R}=2.
+     \end{array}
+    \right.
+    \end{equation*}
+    证明：在$K_R  \backslash \overline{K_r}$内, $1<u<2$.\\
+        解：由$\Delta u =0$可知,$u$是区域$K_R$下的调和函数.那么由极值定理可知,u的最大值或最小值都只能在边界上取得.显然$u$不是常数.\\
+    对于区域$K_R \backslash \overline{K_r}$,$u$的最值在$\Gamma_r$和$\Gamma_R$上取得,又$u|_{\Gamma_r}<u<u|_{\Gamma_R}$,则$1<u<2$.
+
+
+    \item 设$u(r,\theta,\varphi)$是单位球$K_1=\{(r,\theta,\phi):0\leq r <1, 0\leq \theta<\pi,0\leq\phi\leq 2\pi\}$内的调和函数在球坐标下的表示，且它在闭球$\overline{K_1}$上连续,若$u(r,\theta,\varphi)$在上半单位球面上为$1-\sin\theta$,在下半单位球面上恒为0，试证明单位球$K_1$内$0<u(r,\theta,\varphi)<1$,并求$u(r,\theta,\varphi)$在$r=0$的值.\\
+        解：$u$是区域$K_1$下的调和函数.那么由极值定理可知,u的最大值或最小值都只能在边界上取得.显然$u$不是常数.\\
+        由于$0\leq \theta<\pi$,$0\leq u(r,\theta,\varphi)\leq 1$在上球面成立,由极值定理,$0<(r,\theta,\varphi)<1$在区域$K_1$成立.\\
+        由调和函数的性质:\[
+       u(M_0)=\dfrac{1}{4\pi a^2}\displaystyle\int\int_{\Gamma_a}udS
+    \]
+        代入条件，计算积分则有:
+    \[u(M_0) = \dfrac{1}{4\pi r^2}\int\int_S u(r,\theta,\varphi) r^2 \sin\theta d\theta d\varphi = \dfrac{1}{4\pi r^2}\int_0^{2\pi} \int_{\frac{\pi}{2}}^{\pi} (1 - \sin\theta) \cdot 1^2 \cdot \sin\theta d\theta d\varphi =  \dfrac{1}{2}-\dfrac{\pi}{8}
+\]
+    \end{enumerate}
+
+    \setlength{\topmargin}{-18mm}
+\section*{练习十五}
+    \begin{enumerate}
+    \item 证明二维调和函数的积分表达式：
+       \[
+           u(M_0)=-\dfrac{1}{2\pi}\displaystyle\int_{C}\big[u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big]ds.
+       \]
+        解：令$u$为调和函数,且取$v=\ln\dfrac{1}{r}$,在点$M_0$处挖一个以$M_0$为心,充分小的正数$\varepsilon$为半径的圆$K_{\varepsilon}^{M_0}$.\\
+        应用平面上的格林公式得到:
+        \[0=\displaystyle\int_{C+C_{\varepsilon}}\big(u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big)dS\]
+        即\[\displaystyle\int_{C}\big(u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big)dS+\displaystyle\int_{C_{\varepsilon}}\big(u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big)dS\]
+        又\[\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big) = -\dfrac{\partial}{\partial r}\big(\ln\dfrac{1}{r}\big) = \dfrac{1}{r}=\dfrac{1}{\varepsilon}\]
+        则有\[\displaystyle\int_{C_\varepsilon}u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)dS=\dfrac{1}{\varepsilon}\displaystyle\int_{C_\varepsilon}udS=\dfrac{1}{\varepsilon}\cdot 2\pi\varepsilon \overline{u}=2\pi\overline{u}\]
+        其中$\overline{u}$是函数$u$在圆周$C_\varepsilon$的平均值.
+        对于积分的另一项,\[\displaystyle\int_{C_\varepsilon}\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}dS=\ln\dfrac{1}{\varepsilon}\displaystyle\int_{C_\varepsilon}\dfrac{\partial u}{\partial n}dS=-\ln\dfrac{1}{\varepsilon}\displaystyle\int_{C_\varepsilon}\overrightarrow{n}\cdot \nabla udS=\ln\dfrac{1}{\varepsilon}\displaystyle\int_{C_\varepsilon}\Delta udV=0\]
+        那么则有\[\displaystyle\int_{C}\big(u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big)dS+2\pi\overline{u}=0\]
+        那么当$\lim\limits_{\varepsilon\rightarrow 0}\overline{u}=u(M_0)$
+        即\[u(M_0)=-\dfrac{1}{2\pi}\displaystyle\int_{C}\big(u\dfrac{\partial}{\partial n}\big(\ln\dfrac{1}{r}\big)-\ln\dfrac{1}{r}\dfrac{\partial u}{\partial n}\big)dS\]
+\end{enumerate}
+
+\section*{练习十六}
+    \begin{enumerate}
+    \item 设$\Omega$是$\mathbb{R}^3$中以足够光滑的曲面$\Gamma$为边界的有界区域，若边值问题
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     \Delta u = f(x,y,z),&(x,y,z)\in\Omega \\
+     \dfrac{\partial u}{\partial n}+ku|_{\Gamma} =g(x,y,z),&(x,y,z)\in\Gamma.
+     \end{array}
+    \right.
+    \end{equation*}
+    有解,其中常数$k>0$,试证明其解是唯一的(提示:用格林第一公式).\\
+        解：设问题有两个解$u_1$,$u_2$,令$u=u_1-u_2$,则有$\Delta u=\Delta u_1 - \Delta u_2=0$.\\
+    同理也有$u|_{\Gamma}=0$,$\dfrac{\partial u}{\partial n}|_{\Gamma}=0$,则$u$是调和函数.
+    那么有格林第一公式\[\displaystyle\int_{\Omega}u\Delta vd\Omega = \displaystyle\int\int_{\Gamma}u\nabla v\cdot\overrightarrow{n}dS-\displaystyle\int_{\Omega}\nabla u\cdot\nabla vd\Omega\]
+    令$u=v$则有\[\displaystyle\int_{\Omega}u\Delta vd\Omega = \displaystyle\int\int_{\Gamma}u\nabla u\cdot\overrightarrow{n}dS-\displaystyle\int_{\Omega}\nabla u\cdot\nabla ud\Omega\]
+    则有\[\displaystyle\int\int_{\Gamma}u\nabla u\cdot\overrightarrow{n}dS=\displaystyle\int_{\Omega}(\nabla u)^2 d\Omega\]
+    由$\dfrac{\partial u}{\partial n}|_{\Gamma}=0$得到\[\displaystyle\int_{\Omega}(\nabla u)^2 d\Omega=0\]
+    也就是$\nabla u=0$,推出$u=c$,$c$为常数.由$u|_{\Gamma}=0$可知,$c=0$,则$u=0$,即$u_1=u_2$,解是唯一的.
+
+
+    \item 设$\Omega$是$\mathbb{R}^3$为任何区域,$u$的所有二阶偏导数在$\Omega$上存在且连续。若对任意闭球面$\Gamma_a\in\Omega$,成立\\[8pt]
+    $\displaystyle\int\int_{\Gamma_a}\dfrac{\partial u}{\partial n}dS=0$,试证明$u$是$\Omega$上的调和函数(提示:用格林第二公式).\\[8pt]
+     解: 由格林第二公式\[\displaystyle\int_{\Omega}(u\Delta v-v\Delta u)d\Omega=\displaystyle\int_{\Gamma}u\dfrac{\partial v}{\partial n}-v\dfrac{\partial u}{\partial n}dS\]
+    取$v=1$,则有\[\displaystyle\int_{\Omega}\Delta ud\Omega=\displaystyle\int_{\Gamma}\dfrac{\partial u}{\partial n}dS=0\]
+    即$\Delta u =0$,所以$u$是$\Omega$上的调和函数.
+
+
+
+     \item $u$是$\mathbb{R}^3$内的光滑函数，若$\Delta u \geq 0$，则称$u$是下调和的.证明以下两个命题等价：
+       \subitem(1) $u$在$\mathbb{R}^3$内下调和,
+       \subitem(2) 对任意闭球面$\Gamma_r$,$\displaystyle\int\int_{\Gamma_r}\dfrac{\partial u}{\partial n}dS\geq 0$成立,其中$n$是$\Gamma_r$的单位外法向量.\\
+        解：
+        由格林第二公式\[\displaystyle\int_{\Omega}(u\Delta v-v\Delta u)d\Omega=\displaystyle\int_{\Gamma}u\dfrac{\partial v}{\partial n}-v\dfrac{\partial u}{\partial n}dS\]
+        取$v=1$,则有\[\displaystyle\int_{\Omega}\Delta ud\Omega=\displaystyle\int_{\Gamma}\dfrac{\partial u}{\partial n}dS\]
+        很显然两个命题等价.
+    \end{enumerate}
+\end{document}

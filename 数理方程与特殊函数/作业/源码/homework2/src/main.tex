@@ -1,0 +1,182 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习三}
+\begin{enumerate}
+    \item 求下列固有值问题的固有值和固有函数：
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             X^{''}(x)+\lambda X(x)=0, &  \\
+             X(0)=X^{'}(l)=0, &
+             \end{array}
+            \right.
+            \end{equation*}
+    解：分三种情况讨论$\lambda$.
+    \begin{enumerate}
+        \item[(1)] 当$\lambda <0$时，该问题没有平凡解。方程的通解为$X(x)=Ae^{\sqrt {-\lambda }x}+Be^{-\sqrt {-\lambda }x}$.\\将边界条件代入，得到：$A+B=0$和$A\sqrt {-\lambda }e^{\sqrt {-\lambda }l}+B\sqrt {-\lambda }e^{-\sqrt {-\lambda }l}=0$.\\所以有$A=B=0$,方程没有非平凡解.
+        \item[(2)] 当$\lambda =0$时，该问题没有平凡解。方程的通解为$X(x)=(A+Bx)e^{\lambda x}$,很显然，将边界条件代入，得到：$A+B=0$,方程没有非平凡解.
+        \item[(3)] 当$\lambda >0$时，方程的通解为$X(x)=A\cos(\sqrt {\lambda }x)+B\sin(\sqrt {\lambda }x)$,代入方程的边界条件得到：\\ $-A\sqrt {\lambda }\sin(\sqrt {\lambda }l)+B\sqrt {\lambda }\cos(\sqrt {\lambda }l)=0$和$A=0$.即$B\cos(\sqrt {\lambda }l)=0$,解得$\lambda =\lambda_n=(\frac{(2n+1)\pi}{2l})^2(n=0,1,2,\dots)$.$X_n(x)=B_{n}\sin(\frac{(2n+1)\pi}{2l}))(n=0,1,2,\dots)$
+
+    \end{enumerate}
+
+    \item 求如下定解问题的解：
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             u_{tt}=a^2u_{xx},\quad 0<x<l,\quad t>0 &  \\
+             u(0,t)=u_x(l,t)=0, & \\
+             u(x,0)=3\sin(\frac{3\pi x}{2l})+6\sin(\frac{5\pi x}{2l}), &    \\
+             u_t(x,0)=0. &
+             \end{array}
+            \right.
+            \end{equation*}
+    解：令$u(x,t)=X(x)T(t)$,代入方程分离变量得到两个ODE,\\$T^{''}+a^{2}\lambda T=0$和$X^{''}+\lambda X=0$,由边界条件可知:$X(0)=X^{'}(l)=0$.\\求这个ODE的非平凡解：已知当$\lambda>0$时，问题才会有非平凡解.\\通解为：$X(x)=A\cos(\sqrt {\lambda }x)+B\sin(\sqrt {\lambda}x)$.\\代入边界条件得到：$A=0$和$B\sqrt {\lambda}\cos(\sqrt {\lambda}x)=0(n=1,2,\dots)$.所以$\lambda = \lambda_n=(\frac{(2n+1)\pi}{2l})^2$.\\从而找到一族非零解：$X_n=B_n\sin(\frac{(2n+1)\pi x}{2l})(n=1,2,\dots)$.
+    \\ 对于ODE：$T^{''}+a^{2}\lambda T=0$ 而言，将特征值$\lambda$代入方程得到：\\$T^{''}(t)+(\frac{(2n+1)\pi a}{2l})^{2}T(t)=0,$通解为：$T_n(t)=C_n\cos(\frac{(2n+1)\pi at}{2l})+D_n\sin(\frac{(2n+1)\pi at}{2l})(n=0,1,2,\dots)$.\\由叠加定理得原问题的解表示为：$u(x,t)=\sum_{n=0}^{\infty}\big[a_n\cos\frac{(2n+1)\pi at}{2l}+b_n\sin\frac{(2n+1)\pi at}{2l}]\sin\frac{(2n+1)\pi x}{2l}$,\\其中$a_n=B_{n}C_n$,\quad $b_n=B_nD_n$是任意常数.\\结合初值条件可得:
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             \sum_{n=0}^{\infty}a_n\sin\frac{(2n+1)\pi x}{2l}=3\sin(\frac{3\pi x}{2l})+6\sin(\frac{5\pi x}{2l}), &  \\
+             \sum_{n=0}^{\infty}b_n\frac{(2n+1)\pi a}{2l}\sin\frac{(2n+1)\pi x}{2l}=0 & \\
+             \end{array}
+            \right.
+            \end{equation*}
+    得到\begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             a_n=\frac{2}{l}\int_0^l(3\sin(\frac{3\pi x}{2l})+6\sin(\frac{5\pi x}{2l}))\sin\frac{(2n+1)\pi x}{2l}dx, &  \\
+             b_n=0. & \\
+             \end{array}
+            \right.
+            \end{equation*}
+    解得\begin{equation*}
+            a_n=\begin{cases}
+                    3,& n=1\\
+                    6.&n=2
+            \end{cases}
+            \end{equation*}
+    所以$u(x,t)=3\cos\frac{3\pi at}{2l}\sin\frac{3\pi x}{2l}+6\cos\frac{5\pi at}{2l}\sin\frac{5\pi x}{2l}$
+
+
+    \item 求解以下定解问题:\\
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             u_{tt}=u_{xx}+2u,\quad 0<x<1,\quad t>0 &  \\
+             u(0,t)=u_x(1,t)=0, & \\
+             u(x,0)=0, &    \\
+             u_t(x,0)=\sqrt {\pi^2-2}\sin\pi x. &
+             \end{array}
+            \right.
+            \end{equation*}
+    解： 令$u(x,t)=X(x)T(t)$,代入方程分离变量得到两个ODE,$T^{''}+(\lambda-2) T=0$和$X^{''}+\lambda X=0$.\\由边界条件可知：$X(0)=X(1)=0$.\\求后者的非平凡解：已知当$\lambda>0$时，问题才会有非平凡解.\\通解为：$X(x)=A\cos(\sqrt{\lambda}x)+B\sin(\sqrt {\lambda}x)$.由边界条件得：$A=0$和$A\cos(\sqrt {\lambda})+B\sin(\sqrt {\lambda})=0$.\\即$\lambda=\lambda_n=(n\pi)^2$,从而找到一族非零解：$X(x)=B_n\sin(n\pi x)$.
+        \\对于ODE：$T^{''}+(\lambda-2) T=0$而言,将特征值$\lambda$代入，得到：$T^{''}(t)-((n\pi)^2-2)T(t)=0$.\\其通解为：$T_n(t)=C_{n}\cos\sqrt {n^2\pi^2-2}t+D_n\sin\sqrt {n^2\pi^2-2}t$.\\原问题的解可表示为：$u(x,t)=\sum_{n=0}^{\infty}\big[a_{n}\cos\sqrt {n^2\pi^2-2}t+b_n\sin\sqrt {n^2\pi^2-2}t]\sin(n\pi x)$.\\其中$a_n=B_{n}C_n$,\quad $b_n=B_nD_n$是任意常数.\\结合初值条件可得：\begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             \sum_{n=0}^{\infty}a_{n}\sin (n\pi x)=0, &  \\
+             \sum_{n=0}^{\infty}b_n\sqrt {n^2\pi^2-2}\sin (n\pi x)=\sqrt {\pi^2-2}\sin(\pi x). & \\
+             \end{array}
+            \right.
+            \end{equation*}
+    得到\begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             a_n=0, &  \\
+             b_n\sqrt {n^2\pi^2-2}=2\int_0^1\sqrt {\pi^2-2}\sin(\pi x)\sin (n\pi x)dx. & \\
+             \end{array}
+            \right.
+            \end{equation*}
+    解得\begin{equation*}
+            b_n=\begin{cases}
+                    1,& n=1\\
+                    0.&n\neq 1
+            \end{cases}
+            \end{equation*}
+    所以$u(x,t)=\sin\sqrt {\pi^2-2}t\sin(\pi x).$
+
+\end{enumerate}
+\setlength{\topmargin}{-18mm}
+\section*{练习四}
+    \begin{enumerate}
+        \item 求如下定解问题的解：
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             u_{t}=a^2u_{xx},\quad 0<x<l,\quad t>0 &  \\
+             u(0,t)=u(l,t)=0, & \\
+             u(x,0)=x(l-x), &    \\
+             \end{array}
+            \right.
+            \end{equation*}
+        解：令$u(x,t)=X(x)T(t)$,代入方程分离变量得到两个ODE,$X^{''}+\lambda X=0$和$T^{'}+a^2\lambda T=0$.\\由边界条件可知：$X(0)=X(l)=0$.求前者的非平凡解：已知当$\lambda>0$时，问题才会有非平凡解.\\通解为：$X(x)=A\cos(\sqrt {\lambda}x)+B\sin(\sqrt {\lambda}x)$.将边界条件代入，得到：\\$A=0$和$B\sin(\sqrt {\lambda}x)=0(n=1,2,\dots)$.所以$\lambda = \lambda_n=(\frac{n\pi}{l})^2$.\\从而找到一族非零解：$X_n=B_n\sin(\frac{n\pi x}{l})(n=1,2,\dots)$.
+            \\对于ODE：$T^{'}+a^2\lambda T=0$而言,将特征值$\lambda$代入，得到：$T^{'}+a^2(\frac{n\pi}{l})^2 T=0$.其通解为：$T(t)=Ce^{-a^2\lambda t}$.\\原问题的解可表示为：$u(x,t)=\sum_{n=0}^{\infty}a_ne^{-a^2(\frac{n\pi}{l})^2 t}\sin(\frac{n\pi x}{l})$.其中$a_n=B_{n}C_n$为任意常数.\\由初值条件，得到$\sum_{n=0}^{\infty}a_n\sin(\frac{n\pi x}{l})=x(l-x).$\\ 所以$a_n=\infty^l_0 x(l-x)\sin(\frac{n\pi x}{l})dx=(-\frac{2l^2}{n\pi}+\frac{2x^2}{n\pi})-\frac{4l^2}{n^3\pi^3}\cos(n\pi)+\frac{4l^2}{n^3\pi^3}$.
+            解得\begin{equation*}
+            a_n=\begin{cases}
+                    \frac{2(x^2-l^2)}{n\pi},& n\quad is\quad even\\
+                    \frac{8l^2}{n^3\pi^3}+\frac{2(l^2-x^2)}{n\pi}.& n\quad is \quad odd
+            \end{cases}
+            \end{equation*}
+        所以$u(x,t)=\sum_{n=1}^{\infty}\frac{4l^2}{n^3\pi^3}(1-(-1)^{n})\sin(\frac{n\pi x}{l})e^{-(\frac{n\pi x}{l})^2t}$
+
+
+        \item 求下列固有值问题的固有值和固有函数：
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             X^{''}(x)+\lambda X(x)=0, &  \\
+             X^{'}(0)=X(l)=0, &
+             \end{array}
+            \right.
+            \end{equation*}
+    解：分三种情况讨论$\lambda$.
+    \begin{enumerate}
+        \item[(1)] 当$\lambda <0$时，该问题没有平凡解。方程的通解为$X(x)=Ae^{\sqrt {-\lambda }x}+Be^{-\sqrt {-\lambda }x}$.\\将边界条件代入，得到：$A+B=0$和$Ae^{\sqrt {-\lambda }l}+Be^{-\sqrt {-\lambda }l}=0$.\\所以有$A=B=0$,方程没有非平凡解.
+        \item[(2)] 当$\lambda =0$时，该问题没有平凡解。方程的通解为$X(x)=(A+Bx)e^{\lambda x}$,很显然，将边界条件代入，得到：$A+B=0$,方程没有非平凡解.
+        \item[(3)] 当$\lambda >0$时，方程的通解为$X(x)=A\cos(\sqrt {\lambda }x)+B\sin(\sqrt {\lambda }x)$,代入方程的边界条件得到：\\ $B\cos(\sqrt {\lambda l})=0$和$A=0$.解得$\lambda =\lambda_n=(\frac{(2n+1)\pi}{2l})^2(n=1,2,\dots)$.$X_n(x)=B_{n}\cos(\frac{(2n+1)\pi x}{2l})(n=1,2,\dots)$
+
+    \end{enumerate}
+
+        \item 求如下定解问题的解：
+    \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             u_{t}=u_{xx},\quad 0<x<2,\quad t>0 &  \\
+             u_x(0,t)=u(2,t)=0, & \\
+             u(x,0)=4\cos\frac{5\pi x}{4}, &    \\
+             \end{array}
+            \right.
+            \end{equation*}
+        解：令$u(x,t)=X(x)T(t)$,代入方程分离变量得到两个ODE,$X^{''}+\lambda X=0$和$T^{'}+\lambda T=0$.\\由前题易得：$X(x)=B_n\cos\big(\frac{(2n+1)\pi x}{4}\big)$.代入第二个ODE得：$T_n=C_{n}e^{-(\frac{\pi+2n\pi}{4})^2 t}$.\\ $u(x,t)=\sum_{n=0}^{\infty}a_n\cos\big(\frac{\pi+2n\pi}{4})x\big)e^{-(\frac{\pi+2n\pi}{4})^2 t}$.结合初值条件得：
+        解得\begin{equation*}
+            a_n=\begin{cases}
+                    4,& n=2\\
+                    0.&n\neq 2
+            \end{cases}
+            \end{equation*}
+        所以$u(x,t)=4[\cos(\frac{5\pi x}{4})]e^{-(\frac{5\pi}{4})^2}$.
+
+    \end{enumerate}
+\end{document}

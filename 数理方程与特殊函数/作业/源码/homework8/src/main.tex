@@ -1,0 +1,84 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习十五}
+\begin{enumerate}
+    \item[2.] 在下半平面$y<0$内求解拉普拉斯方程的边值问题:
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         u_{xx}+u_{yy}=0,  -\infty<x<+\infty, y<0,\\u|_{y=0}=f(x).
+         \end{array}
+        \right.
+     \end{equation*}
+
+    解：由\[u(M_0)=-\displaystyle\int_{C}f(x,y)\dfrac{\partial G}{\partial n}dS\]
+    和\[G(M,M_0)=\dfrac{1}{2\pi}\big(\ln\dfrac{1}{r_{MM_0}}-\ln\dfrac{1}{r_{MM_1}}\big)\]
+    由于外法向是沿Oy轴向上，所以有\[\dfrac{\partial G}{\partial n}|_{y=0}=\dfrac{\partial G}{\partial y}|_{y=0}\]
+    求导可得:\[u(M_0)=\dfrac{1}{\pi}\displaystyle\int_{-\infty}^{+\infty}\dfrac{f(x)y_0 dx}{(x-x_0)^2 +y_0 ^2}\]
+
+    \item[3.] 设$A$为常数，分别用分离变量法和格林法求解如下定解问题：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{rr}+\dfrac{1}{r}u_r+\dfrac{1}{r^2}u_{\theta\theta}=0,  0<r<1,\\u(1,\theta)=A\cos\theta (-\pi<\theta\leq \pi).
+     \end{array}
+    \right.
+    \end{equation*}
+        解： \subitem(a) 分离变量法:\\
+        设$u(r,\theta)=R(r)\Phi(\theta)$, 则有$R^{''}+\dfrac{1}{r}R^{'}\Phi+\dfrac{1}{r^2}R\Phi^{''}=0$.
+        \\得到$r^{2}R^{''}+rR^{'}=\lambda R$, $\Phi^{''}+\lambda \Phi=0$.当$\lambda=0$时,易得$\Phi_0(\theta)=B_0$.
+        \\当$\lambda>0$,$\Phi(\theta)=C_n\cos\sqrt {\lambda}\theta+D_n\sin\sqrt {\lambda}\theta $得到$\lambda=n^2,(n=1,2,\cdots)$.
+        \\代入得到一个欧拉方程,解得$R_n(r)=E_n r^n$.
+        \\则$u(r,\theta)=B_0(C_0\ln r +D_0)+\displaystyle\sum_{n=1}^{\infty}(E_n r^n)(C_n\cos n\theta+D_0\sin n\theta) $.
+        \\$u(1,\theta)=B_0 D_0+\displaystyle\sum_{n=1}^{\infty}E_n(C_n\cos n\theta+D_0\sin n\theta)=A\cos\theta$.
+        \\所以$u(r,\theta)=Ar\cos\theta.$
+        \subitem(b) 格林函数法:\\
+        代入公式可得:\[u(M_0)=\dfrac{1}{\pi}\displaystyle\int_{-\infty}^{+\infty}\dfrac{Axy_0 dx}{(x-x_0)^2 +y_0 ^2}\]
+        又有\[u(M_0)=\dfrac{1}{2\pi}\displaystyle\int_{0}^{2\pi}f(R,\theta)\dfrac{R^2-r_0^2}{R^2+r_0^2-2Rr_0 \cos \cos(\theta-\theta-0)}d\theta\]
+        经过复杂的积分计算,得到\[u(r,\theta)=Ar\cos\theta\].
+
+
+
+    \item[4.] 设$A,B$为常数，用试探法求如下定解问题的解：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{rr}+\dfrac{1}{r}u_r+\dfrac{1}{r^2}u_{\theta\theta}=0,  r<a,\\u|_{r=a}=A\cos\theta + B\cos\theta,(-\pi<\theta\leq \pi).
+     \end{array}
+    \right.
+    \end{equation*}
+        解：由边界条件设$u(r,\theta)=Cr\cos\theta+Dr\sin\theta+E$
+        代入原始方程得到:$E=0,A=Ca,B=Da$.又由解的唯一性可知$C,D,E$唯一存在.
+    \\[8pt] 即$u(r,\theta)=\dfrac{Ar\cos\theta}{a}+\dfrac{Br\cos\theta}{a}$.
+
+
+    \end{enumerate}
+
+
+
+\end{document}

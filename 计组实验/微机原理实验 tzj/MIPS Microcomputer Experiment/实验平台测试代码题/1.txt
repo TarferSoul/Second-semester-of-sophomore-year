@@ -1,0 +1,20 @@
+`timescale 1ns / 1ps
+module DataRAM(Addr, DataIn, MemWR, Clk, DataOut);
+    parameter n=5,m=32;
+  input[m-1:0] DataIn;
+  input[n-1:0] Addr;
+  input MemWR;
+  input Clk;
+  output [m-1:0] DataOut;
+  
+  reg[m-1:0] regs[2**n-1:0];
+  
+  assign DataOut = regs[Addr];
+  
+  always @(posedge Clk)begin
+	if(MemWR)
+	  regs[Addr] <= DataIn;
+	
+  end
+// 代码
+endmodule

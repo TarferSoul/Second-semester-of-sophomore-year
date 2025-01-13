@@ -1,0 +1,92 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习十七}
+\begin{enumerate}
+    \item 证明：
+    \begin{enumerate}
+        \item[(1)] $\dfrac{d}{dx}[xJ_{0}(x)J_{1}(x)]=x[J_{0}^2(x)-J_{1}^{2}(x)]$；
+        \item[(2)] $\displaystyle\int x^2 J_{1}(x)dx=2xJ_1(x)-x^2 J_{0}(x)+c$;
+        \item[(3)] $J_{2}(x)-J_{0}(x)=2J_{0}^{''}(x)$;
+        \item[(4)] $\displaystyle\int x^{n}J_{0}(x)dx=x^{n}J_{1}(x)+(n-1)x^{n-1}J_0(x)-(n-1)^2 \displaystyle\int x^{n-2}J_0(x)dx$.
+    \end{enumerate}
+    解：
+    \begin{enumerate}
+        \item[(1)]\[\begin{aligned}
+                        \dfrac{d}{dx}[xJ_{0}(x)J_{1}(x)]&=\dfrac{d}{dx}[xJ_{1}(x)]J_{0}(x)+\dfrac{d}{dx}[J_{0}(x)]xJ_{1}(x)\\
+                                                        &=xJ_{0}^{2}(x)-xJ_{1}^{2}(x)\\
+                                                        &=x[J_{0}^2(x)-J_{1}^{2}(x)]
+                   \end{aligned}\]
+        \item[(2)] \[\begin{aligned}
+                        \displaystyle\int x^2 J_{1}(x)dx&=-\displaystyle\int x^2 d(J_{0}(x))\\
+                                                        &=-(x^2 J_{0}(x)-\displaystyle\int J_{0}(x)dx^2)\\
+                                                        &=-x^2 J_{0}(x)+2\displaystyle\int J_{0}(x)dx\\
+                                                        &=2xJ_1(x)-x^2 J_{0}(x)+c
+                   \end{aligned}\]
+        \item[(3)]\[J_{2}(x)-J_{0}(x)=-2J_{1}^{'}(x)=2J_{0}^{''}(x)\]
+        \item[(4)]\[\begin{aligned}
+                        \displaystyle\int x^{n}J_{0}(x)dx&=\displaystyle\int x^{n-1}d[xJ_{1}(x)]\\
+                                                        &=x^{n}J_{1}(x)-(n-1)\displaystyle\int x^{n-1}J_{0}(x)dx\\
+                                                        &=x^{n}J_{1}(x)-(n-1)\big(\displaystyle\int x^{n-2}d[xJ_{1}(x)]\big)\\
+                                                        &=x^{n}J_{1}(x)+(n-1)x^{n-1}J_0(x)-(n-1)^2 \displaystyle\int x^{n-2}J_0(x)dx
+                   \end{aligned}\]
+    \end{enumerate}
+
+    \item 计算积分:
+    \begin{enumerate}
+        \item[(1)] $\displaystyle\int_{0}^{3}(3-x)J_0(\dfrac{\mu_{2}^{(0)}}{3}x)dx$
+        \item[(2)] $\displaystyle\int_{0}^{R}r(R^2 -r^2)J_{0}(\dfrac{\mu_{m}^{(0)}}{R}r)dr$.
+    \end{enumerate}
+    解：
+    \begin{enumerate}
+        \item[(1)]  设 $ u = \frac{\mu_{2}^{(0)}}{3} x $，则 $ x = \frac{3}{\mu_{2}^{(0)}} u $ 和 $ dx = \frac{3}{\mu_{2}^{(0)}} du $
+                    代入原积分，得到：
+                    \[
+                    \int_0^3 (3 - x) J_0\left(\frac{\mu_{2}^{(0)}}{3} x\right) dx = \int_0^{\mu_{2}^{(0)}} \left(3 - \frac{3}{\mu_{2}^{(0)}} u\right) J_0(u) \frac{3}{\mu_{2}^{(0)}} du.
+                    \]
+                    简化后得到：
+                    \[
+                    \frac{9}{\mu_{2}^{(0)}} \int_0^{\mu_{2}^{(0)}} \left(1 - \frac{u}{\mu_{2}^{(0)}}\right) J_0(u) du=-\frac{9}{\mu_{2}^{(0)}}J_{1}(\mu_{2}^{(0)}).
+                    \]
+
+        \item[(2)]
+                    设 \( u = \frac{\mu_{m}^{(0)}}{R} r \)，则 \( r = \frac{R}{\mu_{m}^{(0)}} u \) 和 \( dr = \frac{R}{\mu_{m}^{(0)}} du \)。
+
+                    代入原积分，得到：
+                    \[
+                    \int_0^R r (R^2 - r^2) J_0\left(\frac{\mu_{m}^{(0)}}{R} r\right) dr = \int_0^{\mu_{m}^{(0)}} \frac{R}{\mu_{m}^{(0)}} u \left(R^2 - \left(\frac{R}{\mu_{m}^{(0)}} u\right)^2\right) J_0(u) \frac{R}{\mu_{m}^{(0)}} du.
+                    \]
+                    简化后得到：
+                    \[
+                    \frac{R^3}{{\mu_{m}^{(0)}}^2} \int_0^{\mu_{m}^{(0)}} u \left(1 - \frac{u^2}{{\mu_{m}^{(0)}}^2}\right) J_0(u) du=\frac{2R^4 J_2(\mu_{m}^{(0)})}{\mu_{m}^{(0)}^{2}}.
+                    \]
+    \end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}
