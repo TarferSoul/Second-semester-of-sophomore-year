@@ -1,0 +1,12 @@
+`timescale 1ns / 1ps
+module InstrROM (Addr, Clk, Instr);
+    parameter n=5;
+  input [n-1:0] Addr;
+  input Clk;
+  output reg[31:0] Instr;
+  
+  reg[31:0] regs[2**n-1:0];
+  always @(posedge Clk) 
+	Instr = regs[Addr];
+// 代码
+endmodule

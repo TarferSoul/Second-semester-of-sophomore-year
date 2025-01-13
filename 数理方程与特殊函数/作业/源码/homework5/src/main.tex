@@ -1,0 +1,142 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习十}
+\begin{enumerate}
+    \item 设一无限长的弦作自由振动，弦的初始位移为$\varphi(x)$ ，初始速度为$-k\varphi^{'}(x)$ (k为常数), 求此振动在时刻$t$在$x$处的位移$u(x,t)$,即求如下定解问题的解：
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         u_{tt}=a^2u_{xx},\quad -\infty <x < +\infty, t>0\\u(x,0)=\varphi(x),\quad u_t(x,0)=-k\varphi^{'}(x)
+         \end{array}
+        \right.
+     \end{equation*}
+
+    解：该问题是一个齐次方程问题。下面给出达朗贝尔解法:\\[8pt]
+    令$\xi=x-at,\eta=x+at$,那么$x=\dfrac{\xi+\eta}{2},t=\dfrac{\xi-+\eta}{2a}$.设$u(x,t)=u(\dfrac{\xi+\eta}{2},\dfrac{\xi-\eta}{2a})=\overline{u}(\xi,\eta)$.\\[8pt]
+    求导得$u_x=\overline{u}_{\xi}+\overline{u}_{\eta},\quad u_{xx}=\overline{u}_{\xi\xi}+2\overline{u}_{\xi\eta}+\overline{u}_{\eta\eta}$.同理得$u_{tt}=a^2(\overline{u}_{\xi\xi}-2\overline{u}_{\xi\eta}+\overline{u}_{\eta\eta})$.\\
+    代入方程中则有$\overline{u}_{\xi\eta}=0$,那么可得方程的通解$\overline{u}(\xi,\eta)=f(\xi)+g(\eta)$,其中$f$和$g$都是具二阶连续导数的任意函数.那么原方程的通解为:
+    $u(x,t)=f(x-at)+g(x+at)$.代入初值条件，两边再同时积分可得$a(-f(x)+g(x))+c=\displaystyle\int_{x_0}^{x}-k\varphi^{'}(\alpha)d\alpha$.又有$f(x+g(x)=\varphi(x)$.那么
+    \[
+        \begin{cases}
+            f(x)=\dfrac{1}{2}\varphi(x)-\dfrac{1}{2a}\displaystyle\int_{x_0}^{x}-k\varphi^{'}(\alpha)d\alpha+\dfrac{c}{2a},\\[8pt]
+            g(x)=\dfrac{1}{2}\varphi(x)+\dfrac{1}{2a}\displaystyle\int_{x_0}^{x}-k\varphi^{'}(\alpha)d\alpha-\dfrac{c}{2a}
+        \end{cases}
+    \]
+    由$u(x,t)=f(x-at)+g(x+at)$,所以:
+    \begin{align*}
+    u(x,t)&=\dfrac{\varphi(x-at)+\varphi(x+at)}{2}+\dfrac{1}{2a}\displaystyle\int_{x-at}^{x+at}-k\varphi^{'}(\alpha)d\alpha      \\[8pt]
+        &=\dfrac{1}{2}\big(1-\dfrac{k}{a}\big)\varphi(x+at)+\dfrac{1}{2}\big(1+\dfrac{k}{a}\big)\varphi(x-at). \nonumber    \\
+    \end{align*}
+
+    \item 求解定解问题：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2u_{xx},\quad -\infty <x < +\infty, t>0\\u(x,0)=\sin x,\quad u_t(x,0)=x^2.
+     \end{array}
+    \right.
+    \end{equation*}
+        解：由达朗贝尔公式,
+    \begin{align*}
+    u(x,t)&=\dfrac{\sin(x-at)+\sin(x+at)}{2}+\dfrac{1}{2a}\displaystyle\int_{x-at}^{x+at}\alpha^2 d\alpha  \nonumber    \\[8pt]
+        &=\sin x\cos at+\dfrac{1}{6}\big[2at\cdot (3x^2+a^2t^2)\big]. \nonumber    \\
+        &=\sin x\cos at+x^{2}t+\dfrac{1}{3}a^2t^3.
+    \end{align*}
+
+    \item 求解定解问题：
+       \begin{equation*}
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2u_{xx}+at+x,\quad -\infty <x < +\infty, t>0\\u(x,0)=x,\quad u_t(x,0)=\sin x.
+     \end{array}
+    \right.
+    \end{equation*}
+        解：由达朗贝尔公式,
+    \begin{align*}
+    u(x,t)&=\dfrac{(x-at)+(x+at)}{2}+\dfrac{1}{2a}\displaystyle\int_{x-at}^{x+at}\sin\alpha d\alpha+\dfrac{1}{2a}\displaystyle\int_{0}^{t}\displaystyle\int_{x-a(t-\tau)}^{x+a(t-\tau)}(a\tau+\xi)d\xi d\tau  \nonumber    \\[8pt]
+        &=x+\dfrac{\sin x\sin at}{a}+\dfrac{1}{2a}\displaystyle\int_{0}^{t}2a^2\tau(t-\tau)+\dfrac{1}{2}(2x)[2a(t-\tau)]d\tau. \nonumber    \\
+        &=x+\dfrac{\sin x\sin at}{a}+\dfrac{1}{6}at^3+\dfrac{1}{2}xt^2.
+    \end{align*}
+    \end{enumerate}
+
+    \setlength{\topmargin}{-18mm}
+\section*{练习十一}
+    \begin{enumerate}
+    \item 用行波法求解下列定解问题：
+       \[
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2u_{xx}, &-at<x<0,\quad t>0 \\
+     u|_{x=0}=\phi(t),\quad u|_{x+at=0}=\psi(t),
+     \end{array}
+    \right. \]
+    其中已知函数$\phi,\varPhi$满足相容性条件$\varphi(0)=\psi(0)$.\\
+        解：设$u(x,t)=f(x-at)+g(x+at)$.由边界条件可知,$f(-at)+g(at)=\phi(t)$,$f(-2at)+g(0)=\psi(t)$.\\让$f(x-at)$和$g(x+at)$用$\phi(t)$和$\psi(t)$来表示.则有$f(-at)=\psi(\dfrac{t}{2})-g(0)$.$g(at)=\psi(t)-\phi(\dfrac{t}{2})+g(0)$.\\$g\big[a\big(t+\dfrac{x}{a}\big)\big]=\psi(t+\dfrac{x}{a})-\phi(\dfrac{1}{2}(t+\dfrac{x}{a}))+g(0)$,$f\big[-a\big(t-\dfrac{x}{a}\big)\big]=\phi(\dfrac{1}{2}(t-\dfrac{x}{a}))-g(0)$.\\[8pt]所以$u(x,t)=\psi(t+\dfrac{x}{a})-\phi(\dfrac{1}{2}(t+\dfrac{x}{a}))+\phi(\dfrac{1}{2}(t-\dfrac{x}{a}))$
+
+    \item  求解以下三维波动方程的$Cauchy$问题：
+    \[
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2(u_{xx}+u_{yy}+u_{zz}),& -\infty<x,y,z<+\infty,\quad t>0 \\
+     u(x,y,z,0)=yz,\quad u_t(x,y,z,0)=xz.
+     \end{array}
+    \right. \]
+
+    解：由公式可得:
+    \begin{align*}
+    u(x,y,z,t) &= \dfrac{\partial}{\partial t}\left(\dfrac{t}{4\pi}\int\int \varphi(M+atw)dw\right) + \dfrac{t}{4\pi}\int\int \psi(M+atw)dw  \nonumber    \\[8pt]
+           &= \dfrac{\partial}{\partial t}\left(\dfrac{t}{4\pi}\int_{0}^{2\pi}\int_{0}^{\pi} (y+\sin\theta\sin\varphi)(z+\cos\theta)\sin\theta d\theta d\varphi\right) \nonumber    \\
+           & + \dfrac{t}{4\pi}\int_{0}^{2\pi}\int_{0}^{\pi} (x+\sin\theta\cos\varphi)(z+\cos\theta)\sin\theta d\theta d\varphi \nonumber    \\
+           &= \dfrac{\partial}{\partial t}\big(\dfrac{t}{4\pi}\cdot 4\pi yz\big)+\dfrac{t}{4\pi}(4\pi yz)\\
+           &=yz+xzt
+\end{align*}
+
+
+    \item  求解以下二维波动方程的$Cauchy$问题：
+    \[
+    \left\{
+     \begin{array}{lr}
+     u_{tt}=a^2(u_{xx}+u_{yy}),& -\infty<x,y<+\infty,\quad t>0 \\
+     u(x,y,0)=x^2(x+y),\quad u_t(x,y,0)=0.
+     \end{array}
+    \right. \]
+
+    解：由公式可得:
+    \begin{align*}
+    u(x,y,t) &= \dfrac{1}{2\pi a}\dfrac{\partial }{\partial t}\left[\int\int \dfrac{\varphi(\xi,\eta)d\sigma}{\sqrt{(at)^2-(\xi-x)^2-(\eta-y)^2}}\right]     \\[8pt]
+           &+  \dfrac{1}{2\pi a}\int\int\dfrac{\varphi(\xi,\eta)d\sigma}{\sqrt{(at)^2-(\xi-x)^2-(\eta-y)^2}}   \\[8pt]
+           &= \dfrac{1}{2\pi a}\dfrac{\partial}{\partial t}\left[\int_{0}^{at}\int_{0}^{2\pi}\dfrac{(x+\rho\cos\theta)^2(x+\rho\cos\theta+y+\rho\sin\theta)\rho d\theta d\rho}{\sqrt{(at)^2-\rho^2}}\right] \\
+           &= \dfrac{1}{2\pi a}\dfrac{\partial }{\partial t}\left[\int_{0}^{at}\dfrac{2\pi\rho x^2(x+y)}{\sqrt{(at)^2}-\rho^2}+\dfrac{\pi \rho^3(3x+y)}{\sqrt{(at)^2-\rho^2}}\right]d\rho \\
+           &= \cdots \\
+           &= x^2(x+y)+a^{2}t^2 (3x+y)
+\end{align*}
+
+
+\end{enumerate}
+
+\end{document}

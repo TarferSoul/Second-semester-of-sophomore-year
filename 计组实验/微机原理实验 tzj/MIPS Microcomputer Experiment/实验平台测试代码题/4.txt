@@ -1,0 +1,29 @@
+`timescale 1ns / 1ps
+module ALU (In1, In2, ALUCtr, Res, Zero);
+  input signed [31:0] In1;
+  input signed [31:0] In2;
+  input [3:0] ALUCtr;
+  output Zero;
+  output reg[31:0] Res;
+  assign Zero = (Res == 0)? 1:0;
+  
+  always @(*)
+	begin
+	  case(ALUCtr)
+		4'b0010:
+		  Res = In1 + In2;
+		4'b0110:
+		  Res = In1 - In2;
+		4'b0111:
+		  Res = (In1 < In2)?1:0;
+		4'b0000:
+		  Res = In1 & In2;
+		4'b0001:
+		  Res = In1 | In2;
+		default:
+		  Res = 32'hffffffff;
+	  endcase
+	end
+  
+// 代码
+endmodule

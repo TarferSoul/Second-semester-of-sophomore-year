@@ -1,0 +1,115 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\begin{document}
+\title{\vspace{-2cm}Fundamentals of Information Theory\\ Homework Three}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\begin{description}
+    \item[Problem 1] Solutions:
+        \subitem(a) The stationary distribution \(\pi = (\pi_0, \pi_1)\) satisfies the equation \(\pi P = \pi\) and the condition \(\pi_0 + \pi_1 = 1\).
+            \[
+            \begin{bmatrix}
+            \pi_0 & \pi_1
+            \end{bmatrix}
+            \begin{bmatrix}
+            1 - p_{01} & p_{01} \\
+            p_{10} & 1 - p_{10}
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+            \pi_0 & \pi_1
+            \end{bmatrix}
+            \]
+            Thus, \(\pi_0 = \frac{p_{10}}{p_{10} + p_{01}}\) and \(\pi_1 = \frac{p_{01}}{p_{10} + p_{01}}\).
+            By $H = - \sum_{i} \pi_i \sum_{j} P_{ij} \log P_{ij}$, we have \[H(\mathcal{X}) = - \left[ \frac{p_{10} \log (1 - p_{01}) + p_{01} \log (1 - p_{10}) + p_{10} p_{01} (\log p_{01} + \log p_{10})}{p_{01} + p_{10}} \right]\]
+        \subitem(b) The entropy rate is maximized when the transitions are as uncertain as possible, which corresponds to \( p_{01} = p_{10} = 0.5 \). So $H(\mathcal{X})=1$.
+        \subitem(c) In the former question, let $p=p_{01}$, $1=p_{10}$, we can get this situation. \\So it is $H(\mathcal{X}) = - \frac{1}{1 + p} \left[ (1 - p) \log (1 - p) + p \log p \right]$.
+        \subitem(d) From Lagrange multiplier method, \begin{align*}
+         \displaystyle\max_{H(\mathcal{X})} \quad & L(p,\lambda) = H(\mathcal{X}) + \lambda \cdot (0.5 - p),
+         \quad  p \leq 0.5
+        \end{align*}
+    So $\lambda = \frac{2}{3}$, and $H(\mathcal{X})_{max} = 1$.
+    \item[Problem 2] Solutions:
+    \subitem(a) Not necessarily. For compact code, the overhead is at most 1 bit, but for shanon code, let me explain with an extreme example, if we let one of these probabilities approach infinitesimal, then you will see the overhead goes to infinity.
+    \subitem(b) Look at my answer to Problem 3, they are the same.
+
+    \item[Problem 3] Solutions:
+        \subitem(a) $l_{i}=\lceil \log\frac{1}{p(x_i)} \rceil$, \\[8pt] $H(x)=\displaystyle\sum_{i}p(x)\log\frac{1}{p(x_i)}  < L = \displaystyle\sum_{i}p(x)l_{i}=\displaystyle\sum_{i}p(x)\lceil \log\frac{1}{p(x_i)} \rceil < H(x)+1$ \\[8pt]
+            Assuming that $x_p$ is a prefix of $x_{p+q}$, so we have $F_{p+q} - F_{p} < 2^{-l_p}$ because they are the same in the former p bits. And then $\displaystyle\sum_{p}^{p+q-1}p_i < 2^{-l_p}$, obviously, $p_k < 2^{-l_p}$. However, $l_{p}=\lceil \log\frac{1}{p(x_p)} \rceil \geq \log \frac{1}{p(x_p)}$, so $2^{-l_p} \geq p_k$.So this contradicts our hypothesis, therefore the Shannon code is prefix-code.
+        \subitem(b)
+           \begin{table}[h!]
+    \centering
+    \begin{tabular}{ccccc}
+        \toprule
+        \(i\) & \(p_i\) & \(l_i = \lceil \log \frac{1}{p(x_i)} \rceil\) & \(F_i\) & Codeword\\
+        \midrule
+        1 & 0.5   & 1 & 0     & 0\\
+        2 & 0.25  & 2 & 0.5   & 10\\
+        3 & 0.125 & 3 & 0.75  & 110\\
+        4 & 0.125 & 3 & 0.875 & 111\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:shannon_fano}
+\end{table}
+
+
+    \item[Problem 4] Solutions:\\
+        \subitem(a)
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccccc}
+        \toprule
+        \(X\) & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+        \midrule
+        Codeword & 0 & 10 & 110 & 1110 & 11110 & 111110 & 111111 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+        \subitem(b)\[L = \sum_{i=0}^6 p_i \cdot l_i = 0.49 \times 1 + 0.26 \times 2 + 0.12 \times 3 + 0.04 \times 4 + 0.04 \times 5 + 0.03 \times 6 + 0.02 \times 6 = 2.03\]
+        \subitem(c)
+    \begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccccc}
+        \toprule
+        \(X\) & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+        \midrule
+        Codeword & 0 & 1 & 20 & 22 & 212 & 211 & 210 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+    \item[Problem 5] Solutions:
+        \subitem(a)\[
+\sum_{i=1}^{6} p_i \cdot l_i = 1 \times \frac{8}{23} + 2 \times \frac{6}{23} + 3 \times \frac{4}{23} + 4 \times \frac{2}{23} + 5 \times \frac{2}{23} + 5 \times \frac{1}{23} = \frac{55}{23} \approx 2.39
+\]
+        \subitem(b)The one with probability $\frac{8}{23}$.
+        \subitem(c) Huffman coding.\[\sum_{i=1}^{6} p_i \cdot l_i = 2 \times \frac{8}{23} + 2 \times \frac{6}{23} + 2 \times \frac{4}{23} + 3 \times \frac{2}{23} + 4 \times \frac{2}{23} + 4 \times \frac{1}{23} = \frac{55}{23} \approx 2.35
+\]
+        \subitem(d) Mixture of the first two bottles.
+
+\end{description}
+
+
+\end{document}

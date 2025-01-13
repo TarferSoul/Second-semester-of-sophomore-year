@@ -1,0 +1,104 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习一}
+\begin{enumerate}
+    \item 写出长为$L$的弦振动的边界条件和初始条件：
+    \begin{enumerate}
+        \item[(1)] 端点$x=0$,$x=L$固定在平衡位置；
+        \item[(2)] 初始位移为$f(x)$;
+        \item[(3)] 初始速度为$g(x)$;
+        \item[(4)] 在任何一点上,在时刻$t$时的位移是有界的.
+    \end{enumerate}
+    解：下列各式中,$u$表示弦上$t$时刻$x$位置的位移.
+    \begin{enumerate}
+        \item[(1)] $u|_{x=0}=0, u|_{x=L}=0$,
+        \item[(2)] $u|_{t=0}=f(x)$,
+        \item[(3)] $\frac{\partial u}{\partial x}|_{t=0}=g(x)$,
+        \item[(4)] $|u(x,t)|<+\infty$.
+    \end{enumerate}
+
+    \item 写出弦振动的边界条件：
+    \begin{enumerate}
+        \item[(1)] 在端点$x=0$处，弦是移动的，由$g(t)$给出； 
+        \item[(2)] 在端点$x=L$处，弦不固定地自由移动.
+    \end{enumerate}
+    解：下列各式中,$u$表示弦上$t$时刻$x$位置的位移.
+    \begin{enumerate}
+        \item[(1)] $u|_{x=0}=g(t)$,
+        \item[(2)] $\frac{\partial u}{\partial x}|_{x=L}=0$.
+    \end{enumerate}
+
+    \item 验证函数$u=f(xy)$是方程 $xu_x-yu_y = 0 $的解，其中 $f$ 是任意连续可微函数.\\
+    解： 左边$=x\frac{\partial u}{\partial x}=xyf^{'}(xy)$,\\右边$=y\frac{\partial u}{\partial y}=xyf^{'}(xy)$.\\
+    左边$=$右边，即证函数$u=f(xy)$是方程 $xu_x-yu_y = 0 $的解.
+
+\end{enumerate}
+\setlength{\topmargin}{-18mm}
+\section*{练习二}
+    \begin{enumerate}
+        \item 证明$u(x,t)=e^{-8t}\sin 2x$是如下定解问题的解:
+            \begin{equation*}
+            \frac{\partial u}{\partial t}=2\frac{\partial^2u}{\partial x^2},\quad u(0,t)=u(\pi,t)=0,\quad u(x,0)=\sin 2x.
+            \end{equation*}
+            解：$\frac{\partial u}{\partial t}=-8e^{-8t}\sin 2x,\frac{\partial^2u}{\partial x^2}=-4e^{-8t}\sin 2x$,\\所以
+            $\frac{\partial u}{\partial t}=2\frac{\partial^2u}{\partial x^2}$成立.又显然有$u(0,t)=0,u(\pi,t)=0$且$u(x,0)=\sin 2x$.即证成立.
+
+        \item  设 $F,G$ 是二次可微函数，
+        \begin{enumerate}
+            \item[(1)] 证明$y(x,t)=F(2x+5t)+G(2x-5t)$是方程$4y_{tt}=25y_{xx}$的通解，
+            \item[(2)] 求方程$4y_{tt}=25y_{xx}$满足定解条件$y(0,t)=y(\pi,t)=0,y(x,0)=\sin 2x,y_t(x,0) = 0$的解.
+        \end{enumerate}
+        解：
+        \begin{enumerate}
+            \item[(1)] $y_{tt}=25F^{''}(2x+5t)+25G^{''}(2x-5t),y_{xx}=4F^{''}(2x+5t)+4G^{''}(2x-5t)$\\
+                所以可以得到$4y_{tt}=25y_{xx}$,证毕.
+            \item[(2)] 由$y(x,t)=F(2x+5t)+G(2x-5t)$,\\可得$y(0,t)=F(5t)+G(-5t)=0=y(\pi,t)=F(2\pi+5t)+G(2\pi-5t)$,\\又$y(x,0)=2F(2x)=\sin 2x$,则$F(2x)+G(2x)=\sin 2x$,\\
+                由$y_t=5F^{'}(2x+5t)-5G^{'}(2x-5t)$，则$y_t(x,0)=5F^{'}(2x)-5G^{'}(2x)$,即$F^{'}(2x)=G^{'}(2x)$,\\所以$F^{'}(2x)=G^{'}(2x)=\frac{1}{2}\cos 2x$,\\显然有$F(x)=\frac{1}{2}\sin x+C_1,\quad G(x)=\frac{1}{2}\sin x +C_2$,\\
+                即$y(x,t)=\frac{1}{2}\sin(2x+5t)+\frac{1}{2}\sin(2x-5t)+C_3$,其中$C_3=C_1+C_2$.\\由$y(0,t)=0$可知$C_3=0$,\\所以$y(x,t)=\frac{1}{2}\sin(2x+5t)+\frac{1}{2}\sin(2x-5t)=\sin2x\cos5t$.
+        \end{enumerate}
+
+        \item
+        \begin{enumerate}
+            \item[(1)] 求二阶偏微分方程$\frac{\partial^2 z}{\partial x \partial y}=x^{2}y$的通解,
+            \item[(2)] 求该方程满足定解条件$z(x,0)=x^2,z(1,y)=\cos y$的特解.
+        \end{enumerate}
+        解：
+        \begin{enumerate}
+            \item[(1)] 对方程两边积分，得$z(x,y)=\frac{1}{6}x^{3}y^2+\varphi_1(x)+\varphi_2(y)$,其中$\varphi_1(x)$和$\varphi_2(y)$是任意二阶连续可导函数.
+            \item[(2)] \begin{equation*}
+            \left\{
+             \begin{array}{lr}
+             z(x,0)=\varphi_1(x)+\varphi_2(0)=x^2, &  \\
+             z(1,y)=\frac{1}{6}y^2+\varphi_1(1)+\varphi_2(y)=\cos y, &
+             \end{array}
+            \right.
+            \end{equation*}
+             可得$\varphi_1(1)+\varphi_2(0)=1$,那么$\varphi_1(x)+\varphi_2(y)=-\frac{y^2}{6}+x^2+\cos y-1$,\\则$z(x,y)=\frac{1}{6}x^{3}y^2-\frac{y^2}{6}+x^2+\cos y-1$.
+        \end{enumerate}
+
+    \end{enumerate}
+\end{document}

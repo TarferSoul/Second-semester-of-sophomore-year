@@ -1,0 +1,299 @@
+%! Author = Carl
+%! Date = 2024/3/3
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{tgpagella}
+\usepackage{libertine}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{stmaryrd}
+% Document
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+
+\begin{document}
+\title{\vspace{-2cm}HOMEWORK\\ 数理方程与特殊函数}
+\author{王翎羽\quad U202213806\quad 提高2201班}
+\maketitle
+
+\section*{练习六}
+\begin{enumerate}
+    \item[3.] 求下列定解问题的解：
+     \begin{equation*}
+        \left\{
+         \begin{array}{lr}
+         u_{xx}+u_{yy}=-2x,& x^2+y^2<1,\\u|_{x^2+y^2=1}=1.
+         \end{array}
+        \right.
+     \end{equation*}
+
+    解：将问题转化到极坐标系中解决，得到\\
+    \[\begin{cases}
+          u_{rr}+\dfrac{1}{r}u_{r}+\dfrac{1}{r^2}u_{\theta\theta} = -2r\cos \theta,& r<1\\
+          u|_{r=1} = 1.
+    \end{cases}\]
+    将问题转化为齐次方程和齐次边界的问题，设$u(r,\theta)=v(r,\theta)+w(r,\theta)$得到：\\
+    \[\begin{cases}
+          v_{rr}+\dfrac{1}{r}v_{r}+\dfrac{1}{r^2}v_{\theta\theta} = -2r\cos \theta,& r<1\\
+          v|_{r=1} = 0.
+    \end{cases}\]
+    和\[\begin{cases}
+          w_{rr}+\dfrac{1}{r}w_{r}+\dfrac{1}{r^2}w_{\theta\theta} = 0,& r<1\\
+          w|_{r=1} = 1.
+    \end{cases}\]
+    固有函数法求解$v$，分离变量法求解$w$.\\
+    齐次方程问题的固有函数系为$\{1,\cos\theta,\sin\theta,\dots,\cos n\theta\}$,则:\\$v(r,\theta) = \sum\limits_{n=1}^{\infty}(a_n(r)\cos n \theta + b_n(r)\sin n \theta)$,代入方程中得到：\\$\sum\limits_{n=1}^{\infty}\big[(a_n^{''}+\dfrac{1}{r}a_n^{'}-\dfrac{n^2}{r^2}a_n)\cos n\theta +(b_n^{''}+\dfrac{1}{r}b_n^{'}-\dfrac{n^2}{r^2}b_n)\sin n \theta\big]=-2r\cos \theta$\\得到下列式子:
+    \[\begin{cases}
+          a_1^{''}+\dfrac{1}{r}a_1^{'}-\dfrac{n^2}{r^2}a_1=-2r,& n=1\\
+          a_n^{''}+\dfrac{1}{r}a_n^{'}-\dfrac{n^2}{r^2}a_n = 0,&n \neq 1\\
+          b_n^{''}+\dfrac{1}{r}b_n^{'}-\dfrac{n^2}{r^2}b_n = 0.
+    \end{cases}\]
+    又$v|_{r=1} = 0$可知，$a_n(1)=b_n(1)=0$,又由有界性可知,$|a_n(0)|<+\infty,|b_n(0)|<+\infty$,解欧拉方程得到$a_n(r)=b_n(r)\equiv 0$.\\当$n=1$时,需要解一个非齐次的欧拉方程,设特解$v=cr^3$,代入方程中得到$c=-\dfrac{1}{4}$,又由原点的有界性条件可知，齐次方程通解中$r^{-n}$的系数为0.则通解为:\\$a_1(r)=Ar-\dfrac{1}{4}r^3$.代入到方程中,解得$A=\dfrac{1}{4}$.即$v(r,\theta)=\dfrac{1}{4}(1-x^2-y^2)x$.
+    \\对于齐次方程问题，由于边界条件 $w|_{r=1} = 1$,试探法设$w(r,\theta)=1$是方程的解,所以$w(r,\theta)=1$.
+    \\综上,$u(x,y)=\dfrac{1}{4}(1-x^2-y^2)x+1$.
+\end{enumerate}
+
+\setlength{\topmargin}{-18mm}
+\section*{练习七}
+    \begin{enumerate}
+        \item 求定解问题的解：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{tt}=a^{2}u_{xx},&0<x<l,t>0, \\
+         u(0,t)=0,u(1,t)=1, \\
+         u(x,0)=\sin \dfrac{3\pi x}{l}+\dfrac{x}{l},\quad u_t(x,0)=x(l-x).
+         \end{array}
+        \right. \]
+            解：需要将问题转化为齐次边界条件.设$u(x,t)=v(x,t)+w(x,t)$,其中$w=\dfrac{x}{l}$是辅助函数.
+        那么问题就变成了\[
+        \left\{
+         \begin{array}{lr}
+         v_{tt}=a^{2}v_{xx}, \\
+         v(0,t)=0,v(l,t)=0, \\
+         u(x,0)=\sin \dfrac{3\pi x}{l},\quad u_t(x,0)=x(l-x).
+         \end{array}
+        \right. \]
+        方程的固有值和固有函数分别为:$\lambda=\big(\dfrac{n\pi}{l}\big)^2$,$X(x)=A_n\sin\dfrac{n\pi x}{l}$.\\$T(t)$通解为:$T(t)=B_n\cos\dfrac{n\pi \alpha t}{l}+C_n\sin\dfrac{n\pi \alpha t}{l}$,由叠加原理可知:\\
+        $v(x,t)=\sum\limits_{n=1}^{\infty}\sin\dfrac{n\pi x}{l}\big(a_n\cos\dfrac{n\pi \alpha t}{l}+b_n\sin\dfrac{n\pi v(x,t)\alpha t}{l}\big)$,其中$a_n=A_{n}B_n,b_n=A_{n}C_n$.\\$v_t(x,t)=\sum\limits_{n=1}^{\infty}\sin\dfrac{n\pi x}{l}\big(-a_n\dfrac{n\pi \alpha}{l}\sin\dfrac{n\pi \alpha t}{l}+b_n\dfrac{n\pi \alpha}{l}\cos\dfrac{n\pi \alpha t}{l}\big)$.\\$v(x,0)=\sum\limits_{n=1}^{\infty}b_n\sin\dfrac{n\pi}{l}x=\sin\dfrac{3\pi x}{l}$和$v_t(x,0)=\sum\limits_{n=1}^{\infty}a_n\dfrac{n\pi\alpha}{l}\sin\dfrac{n\pi}{l}x=x(l-x)$.
+        解得\[b_n=\begin{cases}
+                  1, & n=3,\\
+                  0, &n\neq 3.
+        \end{cases}\]
+        和$a_n=\dfrac{4l^3[1-(-1)^n]}{(n\pi)^4\alpha}$.\\所以$u(x,t)=\dfrac{x}{l}+\cos\dfrac{3\pi\alpha t}{l}\sin\dfrac{3\pi x}{l}+\sum\limits_{n=1}^{\infty}\dfrac{4l^3[1-(-1)^n]}{(n\pi)^4\alpha}\sin\dfrac{n\pi\alpha}{l}t\sin\dfrac{n\pi}{l}x$.
+
+
+
+        \item 求定解问题的解：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{t}=8u_{xx}+\cos t +e^{t}\sin\dfrac{x}{2},&0<x<\pi,t>0, \\
+         u(0,t)=\sin t, u_x(\pi,t)=0, \\
+         u(x,0)=0.
+         \end{array}
+        \right. \]
+            解：同上题,需要将问题转化为齐次边界条件.设$u(x,t)=v(x,t)+w(x,t)$,其中$w=\sin t$是辅助函数.那么问题就变成了\[
+        \left\{
+         \begin{array}{lr}
+         u_{t}=8u_{xx}+e^{t}\sin\dfrac{x}{2},&0<x<\pi,t>0, \\
+         u(0,t)=0, u_x(\pi,t)=0, \\
+         u(x,0)=0.
+         \end{array}
+        \right. \]
+        方程的固有值和固有函数分别为:$\lambda=\big(\dfrac{2n+1}{2}\big)^2,n=0,1,2,\dots$,$X(x)=\sin\dfrac{2n-1}{2}x$.可知:
+        \\ $v(x,t)=\sum\limits_{n=1}^{\infty}v_n(t)\sin\dfrac{2n-1}{2}x$.$v_t(x,t)=\sum\limits_{n=1}^{\infty}v_n^{'}(t)\sin\dfrac{2n-1}{2}x$,$v_{xx}(x,t)=v_n(t)\dfrac{-(2n-1)^2}{4}\sin\dfrac{2n-1}{2}x$.\\
+        代入到方程中得到:$\sum\limits_{n=1}^{\infty}\big[v_n^{'}(t)+\dfrac{8(2n-1)^2}{4}v_n(t)\big]\sin\dfrac{2n-1}{2}x=e^t\sin\dfrac{x}{2}$,$v_n(0)=0$.\\所以有:$v_1^{'}(t)+2v_1(t)=e^t$,由$Laplace$变换可得到:$sV_1(s)-v(0)+2V_1(0)=\dfrac{1}{s-1}$.\\易得$v_1(t)=\dfrac{1}{3}(e^t-e^{-2t})$.\\当$n\neq 1$时，由试探法可得$v_n(t)\equiv 0$.所以$v(x,t)=\dfrac{1}{3}(e^t-e^{-2t})\sin\dfrac{x}{2}$.\\所以$u(x,t)=\dfrac{1}{3}(e^t-e^{-2t})\sin\dfrac{x}{2}+\sin t$
+        \item 求解以下定解问题：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{t}=u_{xx}+2u_x,&0<x<1,t>0, \\
+         u(0,t)=u(1,t)=0, \\
+         u(x,0)=e^{-x}\sin\pi x.
+         \end{array}
+        \right. \]
+            解：设$u(x,t)=X(x)T(t)$,则有
+        \[ \begin{cases}
+         X^{''}+2X^{'}-\lambda X=0,\\
+         T^{'}-\lambda T = 0.
+        \end{cases} \]
+        求解ODE易得$X_n(x)=\sum\limits_{n=1}^{\infty}B_{n}e^{-x}\sin n\pi x$.\quad $T=C_{n}e^{(1-(n\pi)^2)t}.$\\所以$u(x,t)=C_{n}e^{(1-(n\pi)^2)t}\sum\limits_{n=1}^{\infty}B_{n}e^{-x}\sin n\pi x$.
+        解得\[
+                a_n=\begin{cases}
+                        1, & n=1, \\
+                        0, & n\neq 1.
+                \end{cases}
+        \]
+        所以$x(x,t)=e^{(1-\pi^2)t}e^{-x}\sin\pi x$.
+    \end{enumerate}
+
+    \setlength{\topmargin}{-18mm}
+\section*{练习八}
+    \begin{enumerate}
+        \item 求定解问题的解：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{t}=2u_{xx}+4+2e^{-x},&0<x<3,t>0, \\
+         u_x(0,t)=1,u(3,t)=-18-e^{-3},& t>0, \\
+         u(x,0)=-(2x^2+e^{-x}),& 0<x<3.
+         \end{array}
+        \right. \]
+            解：需要将问题转化为齐次方程和齐次初值问题,设$u(x,t)=v(x,t)+w(x)$.\\
+        则需要满足\[
+        \begin{cases}
+            w^{''}(x)=-2-e^{-x},\\
+            w^{'}(0)=1,\\
+            w(3)=-18-e^{-3}.
+        \end{cases}
+        \]
+        解得$w(x)=-x^2-e^{-x}-9$.
+        问题转化为:\[
+        \left\{
+         \begin{array}{lr}
+         v_{t}=2v_{xx},&0<x<3,t>0, \\
+         v_x(0,t)=0,v(3,t)=0,& t>0, \\
+         v(x,0)=9-x^2,& 0<x<3.
+         \end{array}
+        \right. \]
+        由分离变量法,需要解下面两个ODE:\[
+        \begin{cases}
+            X^{''}+\lambda X=0,\\
+            T^{'}+2\lambda T=0.
+        \end{cases}
+        \]
+        显然第一个ODE的特征值和固有函数分别为:$\lambda = \big(\dfrac{(2n-1)\pi}{6}\big)^2,n=1,2,\dots$,和$X=A_n\cos\dfrac{(2n-1)\pi}{6}x$.以及$T=B_{n}e^{-2\lambda t}$.
+        \\ 那么$v(x,t)=\sum\limits_{n=1}^{\infty}a_n\cos\dfrac{(2n-1)\pi}{6}x\cdot e^{-2\lambda t}$,其中$a_n=A_nB_n$.又由初值条件可得:\\
+        $\sum\limits_{n=1}^{\infty}a_n\cos\dfrac{(2n-1)\pi}{6}x=9-x^2$,那么$a_n=\dfrac{2}{3}\int^{3}_{0}(9-x^2)\cos\dfrac{(2n-1)\pi}{6}xdx=\dfrac{288}{(2n-1)^3\pi^3}\cdot (-1)^{n+1}$.\\所以$u(x,t)=-x^2-e^{-x}-9+\sum\limits_{n=1}^{\infty}\dfrac{288}{(2n-1)^3\pi^3}\cdot (-1)^{n+1}\big[e^{-\frac{(2n-1)^2\pi^2}{18}t}\big]\cdot \cos\dfrac{(2n-1)\pi}{6}x$.
+
+
+
+        \item 求定解问题的解：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{t}=u_{xx}-6(x-1),&0<x<2,t>0, \\
+         u(0,t)=0, u_x(2,t)=1, \\
+         u(x,0)=\sin \dfrac{\pi x}{4}+x^3-3x^2+x.
+         \end{array}
+        \right. \]
+            解：需要将问题转化为齐次方程和齐次初值问题,设$u(x,t)=v(x,t)+w(x)$.\\
+        则需要满足\[
+        \begin{cases}
+            w^{''}(x)=6(x-1),\\
+            w^{'}(2)=1,\\
+            w(0)=0.
+        \end{cases}
+        \]
+        解得$w(x)=x^3-3x^2+x$.
+        问题转化为:\[
+        \left\{
+         \begin{array}{lr}
+         v_{t}=v_{xx}, \\
+         v_x(2,t)=0,v(0,t)=0, \\
+         v(x,0)=\sin\dfrac{\pi}{4}x.
+         \end{array}
+        \right. \]
+        由分离变量法,需要解下面两个ODE:\[
+        \begin{cases}
+            X^{''}+\lambda X=0,\\
+            T^{'}+\lambda T=0.
+        \end{cases}
+        \]
+        显然第一个ODE的特征值和固有函数分别为:$\lambda=\dfrac{(2n-1)^2\pi^2}{16},n=1,2,\dots$,和$X=A\sin\dfrac{(2n-1)\pi}{4}x$.以及$T=Be^{-\lambda t}$.\\那么$v(x,t)=\sum\limits^{\infty}_{n=1}a_n\sin\dfrac{(2n-1)\pi x}{4}\cdot e^{-\lambda t}$,其中$a_n=AB$.\\由初值条件,$v(x,0)=\sum\limits^{\infty}_{n=1}s_n\sin\dfrac{(2n-1)\pi x}{4}=\sin\dfrac{\pi x}{4}$.显然有:
+        \[
+                a_n=\begin{cases}
+                        1, & n=1, \\
+                        0, & n\neq 1.
+                \end{cases}
+        \]
+        所以$u(x,t)=x^3-3x^2+x+e^{-\frac{\pi^2}{16}t}\sin\dfrac{\pi x}{4}$.
+
+        \item 求解以下定解问题：
+           \[
+        \left\{
+         \begin{array}{lr}
+         u_{xx}+u_{yy}=\sin \pi x,&0<x<1,0<y<1, \\
+         u(0,y)=1,u(1,y)=2, \\
+         u(x,0)=1+x,u(x,1)=1+x-\dfrac{1}{\pi^2}\sin\pi x.
+         \end{array}
+        \right. \]
+            解：需要将问题转化为齐次方程和齐次初值问题,设$u(x,t)=v(x,t)+w(x)$.\\
+        则需要满足\[
+        \begin{cases}
+            w^{''}(x)=\sin\pi x,\\
+            w(1)=2,\\
+            w(0)=1.
+        \end{cases}
+        \]
+        解得$w(x)=-\dfrac{1}{\pi^2}\sin \pi x+x+1$.
+        问题转化为:\[
+        \left\{
+         \begin{array}{lr}
+         v_{xx}+v_{yy}=0, \\
+         v(0,y)=0,v(1,y)=0, \\
+         v(x,0)=\dfrac{1}{\pi^2}\sin \pi x,\quad v(x,1)=0.
+         \end{array}
+        \right. \]
+        由分离变量法,需要解下面两个ODE:\[
+        \begin{cases}
+            X^{''}+\lambda X=0,\\
+            Y^{''}+\lambda Y=0.
+        \end{cases}
+        \]
+        显然第一个ODE的特征值和固有函数分别为:$\lambda=\big(n\pi\big)^2,n=1,2,\dots$,和$X_n=A_n\sin n\pi x$.以及$Y_n=B_{n}e^{\sqrt {\lambda}y}+C_n e^{-\sqrt {\lambda}y}$.\\
+        所以$v(x,y)=\sum\limits_{n=1}^{\infty}(a_{n}e^{\sqrt {\lambda}y}+b_n e^{-\sqrt {\lambda}y})\sin n\pi x$,其中,$a_n=A_n B_n,b_n=A_n C_n$.由初值条件得到:
+        \[
+        \begin{cases}
+            v(x,0)=\sum\limits_{n=1}^{\infty}(a_n+b_n)\sin n\pi x=\dfrac{1}{\pi^2}\sin \pi x \quad\Rightarrow a_1+b_1=\dfrac{1}{\pi^2},\\
+            v(x,1)=\sum\limits_{n=1}^{\infty}(a_n e^{n\pi}+b_n e^{-n\pi})\sin n\pi x = 0 \quad\Rightarrow a_n e^{n\pi}+b_n e^{-n\pi}=0.
+        \end{cases}
+        \]
+    \end{enumerate}
+
+
+    \setlength{\topmargin}{-18mm}
+\section*{练习九}
+    \begin{enumerate}
+        \item 求特征值问题的特征值与特征函数：
+           \[
+        \left\{
+         \begin{array}{lr}
+         X^{''}+\lambda X=0, \\
+         X(-\pi)=X(\pi),X^{'}(-\pi)=X^{'}(\pi).
+         \end{array}
+        \right. \]
+            解：得到特征值方程$r^2+\lambda=0$.\\
+            \subitem(1) 当$\lambda <0, \Delta >0$, $X(x)=Ae^{-\sqrt {-\lambda}x}+Be^{\sqrt {-\lambda}x}$，容易得到$A=B=0$,方程没有非平凡解.
+            \subitem(2) 当$\lambda =0, \Delta =0$, $X(x)=A +Bx$,由边界条件易得$B=0$.则$X(x)=A$.
+            \subitem(3) 当$\lambda >0, \Delta <0$, $X(x)=B\cos\sqrt {\lambda}x+C\sin\sqrt {\lambda}x$.\\又由$X(\pi)=X(-\pi)=B\cos\sqrt{\lambda}(-\pi)+C\sin\sqrt{\lambda}(-\pi)=B\cos\sqrt{\lambda}(\pi)+C\sin\sqrt{\lambda}(\pi)$,所以$C\sin\sqrt{\lambda}=0$.又由$X^{'}(-\pi)=X^{'}(\pi)$,得到$B\sqrt{\lambda}\sin\sqrt{\lambda}\pi=0$.\\那么得到$\lambda_n=n^2,n=1,2,\dots$.$X_n=B_n\cos nx+C_n\sin nx$.
+
+
+
+
+        \item 试说明特征值问题：
+           \[
+        \left\{
+         \begin{array}{lr}
+         x^{2}y^{''}(x)+xy^{'}(x)+\lambda y(x)=0,\\
+         y(1)=y(e)=0.
+         \end{array}
+        \right. \]
+        的固有函数系$\{y_n(x)\}$在区间$[1,e]$上带权函数$\dfrac{1}{x}$正交.
+            \\[8pt]解：令$x=e^t$,那么$y_x=\dfrac{dy}{dt}\dfrac{dt}{dx}=y_te^{-t}$,\quad $y_{xx}=\dfrac{d^2y}{dt^2}(\dfrac{dt}{dx})^2+\dfrac{dy}{dt}\dfrac{d^2t}{dx^2}=y_{tt}e^{-2t}-y_te^{-2t}$.\\[8pt]则$y_{tt}+\lambda y=0$.得到特征方程:$r^2+\lambda=0$.\\当$\lambda>0$时,通解为$y(t)=A\cos\sqrt{\lambda}t+B\sin\sqrt{\lambda}t$.\\由边界条件可得$\lambda=\big(n\pi\big)^2$,特征函数$y_n(x)=B_n\sin(n\pi\ln x)$.所以固有函数系为$\{y_n(x)\}=\{sin(n\pi\ln x)\},n=1,2,\dots$.
+            \[
+            \int_{1}^{e}\frac{1}{x}y_n(x)y_m(x)dx=\int_{0}^{1}y_n(t)y_m(t)dt=\int_{0}^{1}\sin n\pi t\sin m\pi tdt=\begin{cases}0, & n\neq m\\1, & n=m.\end{cases}
+            \]
+            所以固有函数系$\{y_n(x)\}$在区间$[1,e]$上带权函数$\dfrac{1}{x}$正交.
+    \end{enumerate}
+\end{document}

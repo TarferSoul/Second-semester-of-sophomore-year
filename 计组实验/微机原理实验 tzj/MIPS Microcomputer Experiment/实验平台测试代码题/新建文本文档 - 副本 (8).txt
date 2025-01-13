@@ -1,0 +1,17 @@
+`timescale 1ns / 1ps
+module SignedExtend (In, Out);
+    parameter n=16,m=32;
+  input [n-1:0] In;
+  output reg [m-1:0] Out;
+  integer i;
+    always @(In) begin
+        if(In[n-1])
+            for(i = n; i < m; i = i+1)
+                Out[i] = 1'b1;
+        else
+            for(i = n; i < m; i = i+1)
+                Out[i] = 1'b0;        
+        Out[n-1:0] = In;
+    end
+  
+endmodule
